@@ -93,15 +93,14 @@ def main():
     #random.seed(31)
     
     # Read image
-    #img = matplotlib.image.imread('small_image.png')
-    path_to_file = 'C:/Users/beers/Medtronic Assessment/Image sampling/Image sampling/image.jpg'
+    path_to_file = 'small_image.png'
     img = mpimg.imread(path_to_file)
     plt.imshow(img)
     plt.show()
     
     # Get number and size of samples
     num_samples = 3
-    sample_size = 61
+    sample_size = 1
     
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, num_samples, sample_size)
@@ -121,10 +120,6 @@ def main():
         print(sample_coordinates[i])
         position_map = place_sample_on_map(position_map, sample_coordinates[i], sample_size)
     
-    #plt.title('Initial Samples Placed:')
-    #plt.imshow(position_map)
-    #plt.show()
-    
     for i in range(num_samples):
         # Refresh the position map
         position_map = create_position_map(img)
@@ -142,17 +137,6 @@ def main():
         # Select new postion from available spots. Update with new coordinates 
         new_pos = randomly_place_sample(position_map, sample_size)
         sample_coordinates[i] = new_pos
-        
-    # Plot location of samples - CAN REMOVE
-    #position_map = create_position_map(img)
-    #for i in range(num_samples):
-    #    position_map = place_sample_on_map(position_map, sample_coordinates[i], sample_size)
-    #position_map = add_border(position_map, sample_size//2)
-    
-    #plt.title('Final position:')
-    #plt.imshow(position_map)
-    #plt.show()
-    #print('Final sample coordinates:', sample_coordinates)
     
     # Sample and display each region from the original image
     for i in range(num_samples):
