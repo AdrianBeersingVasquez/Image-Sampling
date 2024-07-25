@@ -95,12 +95,12 @@ def main():
     # Read image
     path_to_file = 'london1.jpg'
     img = mpimg.imread(path_to_file)
-    plt.imshow(img)
-    plt.show()
+    #plt.imshow(img)
+    #plt.show()
     
     # Get number and size of samples
     num_samples = 3
-    sample_size = 11
+    sample_size = 21
     
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, num_samples, sample_size)
@@ -142,10 +142,35 @@ def main():
     for i in range(num_samples):
         sample = sample_image(img, sample_coordinates[i], sample_size//2)
 
-        plt.figure()
-        plt.imshow(sample)
-        plt.title(f'Sample {i + 1}')
-        plt.show()
-        
+        #plt.figure()
+        #plt.imshow(sample)
+        #plt.title(f'Sample {i + 1}')
+        #plt.show()
+    
+        # Plot the original image with red squares indicating the sampled regions
+    fig, ax = plt.subplots()
+    ax.imshow(img)
+    half_size = sample_size // 2
+    for i in range(num_samples):
+        x, y = sample_coordinates[i]
+        rect = plt.Rectangle((x - half_size, y - half_size), sample_size, sample_size, edgecolor='r', facecolor='none')
+        ax.add_patch(rect)
+    
+    # Plot all samples in a single row below the original image
+    fig, axs = plt.subplots(2, 1, figsize=(10, 5))
+    axs[0].imshow(img)
+    for i in range(num_samples):
+        x, y = sample_coordinates[i]
+        rect = plt.Rectangle((x - half_size, y - half_size), sample_size, sample_size, edgecolor='r', facecolor='none')
+        axs[0].add_patch(rect)
+    axs[0].axis('off')
+    
+    for i in range(num_samples):
+        sample = sample_image(img, sample_coordinates[i], sample_size // 2)
+        axs[1].imshow(np.hstack([sample for i in range(num_samples)]))
+    axs[1].axis('off')
+    
+    plt.show()
+
 if __name__ == '__main__':
     main()
