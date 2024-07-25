@@ -89,8 +89,26 @@ def sample_image(img, coordinates, half_sample_size):
     x, y = coordinates
     return img[y-half_sample_size:y+half_sample_size, x-half_sample_size:x+half_sample_size]
 
+def plot_samples(img, num_samples, sample_coordinates, offset, square_size, samples):
+    """Plot original image, showing where samples are taken from, and image samples"""
+    # Plot all samples in a single row below the original image
+    fig, axs = plt.subplots(2, 1, figsize=(10, 5))
+    axs[0].imshow(img)
+    for i in range(num_samples):
+        x, y = sample_coordinates[i]
+        rect = plt.Rectangle((x - offset, y -  offset), square_size, square_size, edgecolor='r', facecolor='none')
+        axs[0].add_patch(rect)
+    axs[0].axis('off')
+    
+    # Display the samples in a single row
+    axs[1].imshow(np.hstack(samples))
+    axs[1].axis('off')
+
+    plt.show()
+
+
 def main():
-    #random.seed(31)
+    #random.seed(0)
     
     # Read image
     path_to_file = 'london1.jpg'
@@ -100,9 +118,9 @@ def main():
     
     # Get number and size of samples
     num_samples = 3
-    sample_size = 21
+    sample_size = 81
     sample_length = sample_size
-    half_sample_length = sample_length
+    half_sample_length = sample_length // 2
     half_size = half_sample_length
 
 
@@ -149,20 +167,7 @@ def main():
         sample = sample_image(img, sample_coordinates[i], sample_size//2)
         samples.append(sample)
     
-    # Plot all samples in a single row below the original image
-    fig, axs = plt.subplots(2, 1, figsize=(10, 5))
-    axs[0].imshow(img)
-    for i in range(num_samples):
-        x, y = sample_coordinates[i]
-        rect = plt.Rectangle((x - half_size, y - half_size), sample_size, sample_size, edgecolor='r', facecolor='none')
-        axs[0].add_patch(rect)
-    axs[0].axis('off')
-    
-    # Display the samples in a single row
-    axs[1].imshow(np.hstack(samples))
-    axs[1].axis('off')
-    
-    plt.show()
+    plot_samples(img, num_samples, sample_coordinates, half_sample_length, sample_length, samples)
 
 if __name__ == '__main__':
     main()
