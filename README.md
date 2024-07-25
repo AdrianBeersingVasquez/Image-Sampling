@@ -22,4 +22,6 @@ When executed, the script will:
 
 7. The samples are now displayed, and the sample coordinates are saved.
 
+## Notes
 
+The file named Version 2 contains a more complete version of the original script.
