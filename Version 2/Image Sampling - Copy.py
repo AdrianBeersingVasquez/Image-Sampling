@@ -91,7 +91,7 @@ def sample_image(img, coordinates, half_sample_size):
 
 def plot_samples(img, num_samples, sample_coordinates, offset, square_size, samples):
     """Plot original image, showing where samples are taken from, and image samples"""
-    # Plot all samples in a single row below the original image
+    # Plot original image, overlaying squares to show where samples are taken from
     fig, axs = plt.subplots(2, 1, figsize=(10, 5))
     axs[0].imshow(img)
     for i in range(num_samples):
@@ -100,7 +100,7 @@ def plot_samples(img, num_samples, sample_coordinates, offset, square_size, samp
         axs[0].add_patch(rect)
     axs[0].axis('off')
     
-    # Display the samples in a single row
+    # Display the samples in a single row beneath the original image
     axs[1].imshow(np.hstack(samples))
     axs[1].axis('off')
 
