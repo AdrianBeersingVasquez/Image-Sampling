@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-def get_valid_orientations(img, n, sample_size):
+def get_valid_orientations(img, sample_size):
     """Determine valid arrangement of samples that can fit within image dimensions """
     img_height, img_width = img.shape[:2]
     valid_orientations = []
@@ -69,7 +69,7 @@ def dilate_zeros(position_map, sample_size):
                 dilated_map[y_start:y_end, x_start:x_end] = 0
     return dilated_map
 
-def randomly_place_sample(position_map, sample_size):
+def randomly_place_sample(position_map):
     """Use the positional map as a mask to determine valid spaces where the sample can be (randomly) placed"""
     img_height, img_width = position_map.shape
     
