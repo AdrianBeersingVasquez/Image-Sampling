@@ -1,12 +1,12 @@
 import matplotlib.image as mpimg
 from image_sampling import *
 
-def halve_length(length):
-    """Handle case where sample size is """
-    #if length == 1:
-    #    return 1
-    
-    return length//2
+def halve_length(length: int) -> int:
+    """Handle case where sample size is 1"""
+    if length == 1:
+        return 1
+    else:
+        return length//2
 
 def get_sample_length() -> int:
     while True:
@@ -30,9 +30,9 @@ def main():
     random.seed(0)
     
     # Read image
-    path_to_file = 'london1.jpg'
+    path_to_file = 'small_image.png'
     img = mpimg.imread(path_to_file)
-    
+
     # Get number and size of samples
     num_samples = 3
     sample_length = 1#get_sample_length()
