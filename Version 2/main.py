@@ -1,7 +1,4 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-import random
 from image_sampling import *
 
 def halve_length(length):
@@ -38,7 +35,7 @@ def main():
     
     # Get number and size of samples
     num_samples = 3
-    sample_length = 5#get_sample_length()
+    sample_length = 1#get_sample_length()
 
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, sample_length)
