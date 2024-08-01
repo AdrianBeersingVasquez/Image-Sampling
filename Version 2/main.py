@@ -10,7 +10,7 @@ def main():
 
     # Get number and size of samples
     num_samples = 3
-    sample_length = 141#get_sample_length()
+    sample_length = get_sample_length()
 
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, sample_length)
