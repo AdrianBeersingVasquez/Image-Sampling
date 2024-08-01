@@ -30,7 +30,7 @@ def main():
     random.seed(0)
     
     # Read image
-    path_to_file = 'small_image.png'
+    path_to_file = 'london1.jpg'
     img = mpimg.imread(path_to_file)
 
     # Get number and size of samples
@@ -75,10 +75,10 @@ def main():
     # Save sampled images
     samples = []
     for i in range(num_samples):
-        sample = sample_image(img, sample_coordinates[i], halve_length(sample_length))
+        sample = sample_image(img, sample_coordinates[i], sample_length//2)
         samples.append(sample)
     
-    plot_samples(img, num_samples, sample_coordinates, halve_length(sample_length), sample_length, samples)
+    plot_samples(img, num_samples, sample_coordinates, sample_length//2, sample_length, samples)
 
 if __name__ == '__main__':
     main()
