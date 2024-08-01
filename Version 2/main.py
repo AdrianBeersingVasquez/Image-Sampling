@@ -63,9 +63,10 @@ def main():
                 position_map = place_sample_on_map(position_map, sample_coordinates[j], sample_length)
         
         # Add a buffer around each placed sample (prevent overlap with other samples)
-        # and add border (to contain sample fully within image)
+        # and add border, if necessary (to contain sample fully within image)
         position_map = dilate_zeros(position_map, sample_length)
-        position_map = add_border(position_map, halve_length(sample_length))
+        if sample_length>1:
+            position_map = add_border(position_map, halve_length(sample_length))
         
         # Select new postion from available spots. Update with new coordinates 
         new_pos = randomly_place_sample(position_map)
