@@ -2,7 +2,7 @@ import matplotlib.image as mpimg
 from image_sampling import *
 
 def main():
-    random.seed(0)
+    #random.seed(0)
     
     # Read image
     path_to_file = 'london1.jpg'
@@ -10,7 +10,7 @@ def main():
 
     # Get number and size of samples
     num_samples = 3
-    sample_length = 69#get_sample_length()
+    sample_length = 41#get_sample_length()
 
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, sample_length)
@@ -40,12 +40,15 @@ def main():
         new_pos = randomly_place_sample(position_map)
         sample_coordinates[i] = new_pos
     
+    # Shuffle order of samples
+    random.shuffle(sample_coordinates)
+
     # Save sampled images
     samples = []
     for i in range(num_samples):
         sample = sample_image(img, sample_coordinates[i], sample_length//2)
         samples.append(sample)
-    print(sample_coordinates)
+    #print(sample_coordinates)
     plot_samples(img, num_samples, sample_coordinates, halve_length(sample_length, decimalise=True), sample_length, samples)
 
 if __name__ == '__main__':

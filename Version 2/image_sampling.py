@@ -95,7 +95,7 @@ def plot_samples(img, num_samples, sample_coordinates, offset, square_size, samp
     axs[0].imshow(img)
     for i in range(num_samples):
         x, y = sample_coordinates[i]
-        rect = plt.Rectangle((x - offset, y -  offset), square_size, square_size, edgecolor='r', facecolor='none')
+        rect = plt.Rectangle((x - offset, y -  offset), square_size, square_size, edgecolor='r', facecolor='none', lw=2)
         axs[0].add_patch(rect)
     axs[0].axis('off')
     
