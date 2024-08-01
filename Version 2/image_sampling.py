@@ -104,3 +104,33 @@ def plot_samples(img, num_samples, sample_coordinates, offset, square_size, samp
     axs[1].axis('off')
 
     plt.show()
+
+def halve_length(length, decimalise=False):
+    """
+    Halve the given length. If length is 1, return 1 or 0.5 based on the decimalise flag.
+    
+    Args:
+        length (int): The length to be halved. Expected to be an odd integer.
+        decimalise (bool): Flag to determine if 1 should be returned as 0.5. Defaults to False.
+    """
+    if length == 1:
+        return 0.5 if decimalise else 1
+    return length//2
+
+def get_sample_length() -> int:
+    while True:
+        try:
+            sample_length = int(input('Size of samples (enter a positive odd integer): '))
+            
+            if sample_length <= 0:
+                print('Invalid input. Sample length must have positive value.')
+                continue
+            
+            if sample_length % 2 == 0:
+                print('Invalid input. Sample length must be odd.')
+                continue
+            
+            return sample_length
+        
+        except ValueError:
+            print('Invalid input. Sample length must be an integer.')
