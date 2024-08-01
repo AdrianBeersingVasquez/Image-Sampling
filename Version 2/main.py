@@ -35,29 +35,22 @@ def main():
     random.seed(0)
     
     # Read image
-    path_to_file = 'small_image.png'
+    path_to_file = 'london1.jpg'
     img = mpimg.imread(path_to_file)
 
     # Get number and size of samples
     num_samples = 3
-    sample_length = 1#get_sample_length()
+    sample_length = 141#get_sample_length()
 
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, sample_length)
     assert len(orientations) > 0, f'The sample sizes are too large. {num_samples} samples of length {sample_length} cannot fit within the image without overlap'
     
-    position_map = create_position_map(img)
-    
     # Select inital sample layout and calculate inital sample coordinates
     selected_orientation = orientations[0]
     sample_coordinates = initialise_sample_coordinates(selected_orientation, sample_length, num_samples)
-    #print('Sample coordinates:', sample_coordinates)
     
-    # Place samples on position_map (setting corresponding values to 0)
-    for i in range(len(sample_coordinates)):
-        #print(sample_coordinates[i])
-        position_map = place_sample_on_map(position_map, sample_coordinates[i], sample_length)
-    
+    # (Randomly) shuffle position of samples
     for i in range(num_samples):
         # Refresh the position map
         position_map = create_position_map(img)
