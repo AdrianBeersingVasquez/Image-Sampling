@@ -11,6 +11,24 @@ def halve_length(length):
     
     return length//2
 
+def get_sample_length() -> int:
+    while True:
+        try:
+            sample_length = int(input('Size of samples (enter a positive odd integer): '))
+            
+            if sample_length <= 0:
+                print('Invalid input. Sample length must have positive value.')
+                continue
+            
+            if sample_length % 2 == 0:
+                print('Invalid input. Sample length must be odd.')
+                continue
+            
+            return sample_length
+        
+        except ValueError:
+            print('Invalid input. Sample length must be an integer.')
+
 def main():
     random.seed(0)
     
@@ -20,10 +38,7 @@ def main():
     
     # Get number and size of samples
     num_samples = 3
-    sample_size = 81
-    sample_length = sample_size
-    half_sample_length = sample_length // 2
-    half_size = half_sample_length
+    sample_length = get_sample_length()
 
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, sample_length)
