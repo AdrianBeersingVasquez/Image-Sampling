@@ -86,7 +86,7 @@ def randomly_place_sample(position_map):
 def sample_image(img, coordinates, half_sample_size):
     """Return image centred at given coordinate, of size sample_size"""
     x, y = coordinates
-    return img[y-half_sample_size:y+half_sample_size, x-half_sample_size:x+half_sample_size]
+    return img[y-half_sample_size:y+half_sample_size+1, x-half_sample_size:x+half_sample_size+1]
 
 def plot_samples(img, num_samples, sample_coordinates, offset, square_size, samples):
     """Plot original image, showing where samples are taken from, and image samples"""

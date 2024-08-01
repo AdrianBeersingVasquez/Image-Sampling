@@ -38,7 +38,7 @@ def main():
     
     # Get number and size of samples
     num_samples = 3
-    sample_length = get_sample_length()
+    sample_length = 5#get_sample_length()
 
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, sample_length)
@@ -49,11 +49,11 @@ def main():
     # Select inital sample layout and calculate inital sample coordinates
     selected_orientation = orientations[0]
     sample_coordinates = initialise_sample_coordinates(selected_orientation, sample_length, num_samples)
-    print('Sample coordinates:', sample_coordinates)
+    #print('Sample coordinates:', sample_coordinates)
     
     # Place samples on position_map (setting corresponding values to 0)
     for i in range(len(sample_coordinates)):
-        print(sample_coordinates[i])
+        #print(sample_coordinates[i])
         position_map = place_sample_on_map(position_map, sample_coordinates[i], sample_length)
     
     for i in range(num_samples):
