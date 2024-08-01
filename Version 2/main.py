@@ -10,7 +10,7 @@ def main():
 
     # Get number and size of samples
     num_samples = 3
-    sample_length = get_sample_length()
+    sample_length = 69#get_sample_length()
 
     # Check if the image dimensions are big enough to fit the samples
     orientations = get_valid_orientations(img, sample_length)
@@ -45,8 +45,8 @@ def main():
     for i in range(num_samples):
         sample = sample_image(img, sample_coordinates[i], sample_length//2)
         samples.append(sample)
-    
-    plot_samples(img, num_samples, sample_coordinates, halve_length(sample_length, decimalise=True), halve_length(sample_length), samples)
+    print(sample_coordinates)
+    plot_samples(img, num_samples, sample_coordinates, halve_length(sample_length, decimalise=True), sample_length, samples)
 
 if __name__ == '__main__':
     main()
