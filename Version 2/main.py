@@ -2,15 +2,16 @@ import matplotlib.image as mpimg
 from image_sampling import *
 
 def halve_length(length, decimalise=False):
-    """Handle case where sample size is 1"""
-    if length == 1:
-        if decimalise:
-            return 0.5
-        else:
-            return 1
+    """
+    Halve the given length. If length is 1, return 1 or 0.5 based on the decimalise flag.
     
-    else:
-        return length//2
+    Args:
+        length (int): The length to be halved. Expected to be an odd integer.
+        decimalise (bool): Flag to determine if 1 should be returned as 0.5. Defaults to False.
+    """
+    if length == 1:
+        return 0.5 if decimalise else 1
+    return length//2
 
 def get_sample_length() -> int:
     while True:
