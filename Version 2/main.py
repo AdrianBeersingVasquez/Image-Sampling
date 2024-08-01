@@ -1,10 +1,14 @@
 import matplotlib.image as mpimg
 from image_sampling import *
 
-def halve_length(length: int) -> int:
+def halve_length(length, decimalise=False):
     """Handle case where sample size is 1"""
     if length == 1:
-        return 1
+        if decimalise:
+            return 0.5
+        else:
+            return 1
+    
     else:
         return length//2
 
@@ -30,7 +34,7 @@ def main():
     random.seed(0)
     
     # Read image
-    path_to_file = 'london1.jpg'
+    path_to_file = 'small_image.png'
     img = mpimg.imread(path_to_file)
 
     # Get number and size of samples
@@ -78,7 +82,7 @@ def main():
         sample = sample_image(img, sample_coordinates[i], sample_length//2)
         samples.append(sample)
     
-    plot_samples(img, num_samples, sample_coordinates, sample_length//2, sample_length, samples)
+    plot_samples(img, num_samples, sample_coordinates, halve_length(sample_length, decimalise=True), halve_length(sample_length), samples)
 
 if __name__ == '__main__':
     main()
